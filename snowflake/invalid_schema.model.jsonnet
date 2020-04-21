@@ -1,4 +1,4 @@
-local common = import '../common.libsonnet';
+local common = import 'common.libsonnet';
 local util = import 'util.libsonnet';
 local target = std.extVar('target');
 

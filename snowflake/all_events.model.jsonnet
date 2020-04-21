@@ -1,4 +1,4 @@
-local common = import '../common.libsonnet';
+local common = import 'common.libsonnet';
 
 {
   name: 'rakam_events',

@@ -33,6 +33,6 @@
   mappings: {
     eventTimestamp: 'time',
     userId: 'user',
-    device_id: 'device_id',
+    deviceId: 'device_id',
   },
 }

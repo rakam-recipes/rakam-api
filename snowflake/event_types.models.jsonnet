@@ -1,5 +1,5 @@
-local common = import '../common.libsonnet';
-local predefined = import '../predefined.libsonnet';
+local common = import 'common.libsonnet';
+local predefined = import 'predefined.libsonnet';
 
 local target = std.extVar('target');
 
