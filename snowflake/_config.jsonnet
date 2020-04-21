@@ -37,5 +37,5 @@
     },
   },
   tags: ['event-analytics'],
-  warehouse: ['snowflake'],
+  databases: ['snowflake'],
 }
