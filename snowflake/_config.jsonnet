@@ -23,13 +23,13 @@
                   LOWER(LTRIM(REGEXP_REPLACE(REGEXP_REPLACE(F.KEY, '([a-z])([A-Z])', '\1_\2'), '[^a-zA-Z0-9_]', ''), '_')) as PROP_NAME,
                   MODE(TYPEOF(f.VALUE)) OVER (PARTITION BY EVENT_DB, PROP_DB, TYPEOF(f.VALUE)) as TYPE
               FROM
-                  EVENTS E,
+                  (select * from events where _TIME between DATEADD(DAY, -15, current_timestamp) and current_timestamp limit 2000000) E,
                   LATERAL FLATTEN(PROPERTIES, RECURSIVE=>FALSE) F
               WHERE
-                  _TIME > DATEADD(MINUTE, -50, current_timestamp)
-                  AND TYPEOF(F.VALUE) IN ('BOOLEAN', 'DECIMAL', 'DOUBLE', 'INTEGER', 'VARCHAR')
+                  
+                  TYPEOF(F.VALUE) IN ('BOOLEAN', 'DECIMAL', 'DOUBLE', 'INTEGER', 'VARCHAR')
                   --AND REGEXP_LIKE(F.KEY, '^[a-zA-Z0-9]*$')
-                  AND EVENT_TYPE NOT IN ('$invalid_schema', '$identify')    
+                  AND EVENT_TYPE NOT IN ('$invalid_schema', '$identify') 
           ) d
           GROUP BY 1
         |||,
