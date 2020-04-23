@@ -51,7 +51,7 @@ local dimensions = [
   ||| % { target: util.generate_target_reference(target) },
   measures: common.measures,
   mappings: common.mappings,
-  dimensions: common.dimensions + std.foldl(function(a, b) a + b, std.map(function(prop) {
+  dimensions: common.columns + std.foldl(function(a, b) a + b, std.map(function(prop) {
     [prop.n]: {
       sql: '{{TABLE}}.properties:"%(name)s"::%(type)s' % { type: prop.t, name: prop.db },
       category: if std.startsWith(prop.db, '_') then 'SDK' else 'Event Property',
