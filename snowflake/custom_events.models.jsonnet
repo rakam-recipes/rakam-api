@@ -14,16 +14,16 @@ std.map(function(event_type)
                                  [prop.n]: {
                                    sql: '{{TABLE}}.properties:"%(name)s"::%(type)s' % { type: prop.t, name: prop.db },
                                    label: if std.objectHas(definedDimensions, prop.n) && std.objectHas(definedDimensions[prop.n], 'label') then definedDimensions[prop.n].label
-                                           else if std.objectHas(common.dimensions, prop.n) && std.objectHas(common.dimensions[prop.n], 'label') then common.dimensions[prop.n].label 
-                                           else null,
+                                   else if std.objectHas(common.dimensions, prop.n) && std.objectHas(common.dimensions[prop.n], 'label') then common.dimensions[prop.n].label
+                                   else null,
                                    category: if std.objectHas(definedDimensions, prop.n) && std.objectHas(definedDimensions[prop.n], 'category') then definedDimensions[prop.n].category
-                                              else if std.objectHas(common.dimensions, prop.n) && std.objectHas(common.dimensions[prop.n], 'category') then common.dimensions[prop.n].category 
-                                              else if std.startsWith(prop.db, '_') then 'SDK' 
-                                              else 'Event Property',
+                                   else if std.objectHas(common.dimensions, prop.n) && std.objectHas(common.dimensions[prop.n], 'category') then common.dimensions[prop.n].category
+                                   else if std.startsWith(prop.db, '_') then 'SDK'
+                                   else 'Event Property',
                                  },
                                }, std.parseJson(event_type.props)), {})
                                +
-                               if defined != null && std.objectHas(defined, 'computed_dimensions') then defined.computed_dimensions else {}
+                               if defined != null && std.objectHas(defined, 'computed_dimensions') then defined.computed_dimensions else {};
   {
     name: 'rakam_event_' + event_name,
     label: (if defined != null then '[SDK] ' else '') + event_name,
@@ -33,6 +33,6 @@ std.map(function(event_type)
     measures: common.measures + if defined != null && std.objectHas(defined, 'measures') then defined.measures else {},
     mappings: common.mappings,
     relations: if defined != null && std.objectHas(defined, 'relations') then defined.relations else {},
-    category: 'Rakam Events', 
+    category: 'Rakam Events',
     dimensions: common.dimensions + dimensions_for_event,
   }, std.extVar('event_schema'))
