@@ -7,7 +7,7 @@ local common = import 'common_schema.libsonnet';
   category: 'Rakam Events',
   measures: common.measures,
   mappings: common.mappings,
-  dimensions: common.columns + common {
+  dimensions: common.columns {
     event_type: {
       column: 'EVENT_TYPE',
     },
