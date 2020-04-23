@@ -1,4 +1,4 @@
-local common = import 'common.libsonnet';
+local common = import 'common_schema.libsonnet';
 
 {
   name: 'rakam_events',
@@ -6,7 +6,8 @@ local common = import 'common.libsonnet';
   target: std.extVar('target'),
   category: 'Rakam Events',
   measures: common.measures,
-  dimensions: common.dimensions {
+  mappings: common.mappings,
+  dimensions: common.columns + common {
     event_type: {
       column: 'EVENT_TYPE',
     },

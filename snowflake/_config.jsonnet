@@ -23,7 +23,7 @@
                   LOWER(LTRIM(REGEXP_REPLACE(REGEXP_REPLACE(F.KEY, '([a-z])([A-Z])', '\1_\2'), '[^a-zA-Z0-9_]', ''), '_')) as PROP_NAME,
                   MODE(TYPEOF(f.VALUE)) OVER (PARTITION BY EVENT_DB, PROP_DB, TYPEOF(f.VALUE)) as TYPE
               FROM
-                  (select * from events where _TIME between DATEADD(DAY, -15, current_timestamp) and current_timestamp limit 2000000) E,
+                  (select * from events sample (10) where _TIME between DATEADD(DAY, -15, current_timestamp) and current_timestamp limit 2000000) E,
                   LATERAL FLATTEN(PROPERTIES, RECURSIVE=>FALSE) F
               WHERE
                   
