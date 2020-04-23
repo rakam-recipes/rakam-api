@@ -34,5 +34,5 @@ std.map(function(event_type)
     mappings: common.mappings,
     relations: if defined != null && std.objectHas(defined, 'relations') then defined.relations else {},
     category: 'Rakam Events',
-    dimensions: common.dimensions + dimensions_for_event,
+    dimensions: common.columns + dimensions_for_event,
   }, std.extVar('event_schema'))
