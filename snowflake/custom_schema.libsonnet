@@ -9,6 +9,7 @@
     dimensions: {
       quantity: {
         category: 'Basket',
+        description: 'How many products the user added to the basket?',
       },
       brand_name: {
         category: 'Product',
