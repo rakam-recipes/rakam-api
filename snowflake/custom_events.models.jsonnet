@@ -3,6 +3,14 @@ local predefined = import 'custom_schema.libsonnet';
 
 local target = std.extVar('target');
 
+local types = {
+  BOOLEAN: 'boolean',
+  DECIMAL: 'double',
+  DOUBLE: 'double',
+  INTEGER: 'integer',
+  VARCHAR: 'string',
+};
+
 std.map(function(event_type)
   local event_name = event_type.n;
   local db_name = event_type.db;
@@ -16,6 +24,7 @@ std.map(function(event_type)
                                    label: if std.objectHas(definedDimensions, prop.n) && std.objectHas(definedDimensions[prop.n], 'label') then definedDimensions[prop.n].label
                                    else if std.objectHas(common.dimensions, prop.n) && std.objectHas(common.dimensions[prop.n], 'label') then common.dimensions[prop.n].label
                                    else null,
+                                   type: types[prop.t],
                                    category: if std.objectHas(definedDimensions, prop.n) && std.objectHas(definedDimensions[prop.n], 'category') then definedDimensions[prop.n].category
                                    else if std.objectHas(common.dimensions, prop.n) && std.objectHas(common.dimensions[prop.n], 'category') then common.dimensions[prop.n].category
                                    else if std.startsWith(prop.db, '_') then 'SDK'
