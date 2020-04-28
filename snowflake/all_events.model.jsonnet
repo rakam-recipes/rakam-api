@@ -10,6 +10,7 @@ local common = import 'common_schema.libsonnet';
   dimensions: common.columns {
     event_type: {
       column: 'EVENT_TYPE',
+      type: 'string',
     },
   },
 }
