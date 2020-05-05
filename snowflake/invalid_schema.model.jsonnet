@@ -2,6 +2,14 @@ local common = import 'common_schema.libsonnet';
 local util = import 'util.libsonnet';
 local target = std.extVar('target');
 
+local types = {
+  BOOLEAN: 'boolean',
+  DECIMAL: 'double',
+  DOUBLE: 'double',
+  INTEGER: 'integer',
+  VARCHAR: 'string',
+};
+
 local dimensions = [
   {
     db: 'collection',
@@ -55,6 +63,7 @@ local dimensions = [
     [prop.n]: {
       sql: '{{TABLE}}.properties:"%(name)s"::%(type)s' % { type: prop.t, name: prop.db },
       category: if std.startsWith(prop.db, '_') then 'SDK' else 'Event Property',
+      type: types[prop.t],
       description: prop.desc,
     },
   }, dimensions), {}),
