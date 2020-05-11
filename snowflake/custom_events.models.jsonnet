@@ -37,8 +37,8 @@ std.map(function(event_type)
     name: 'rakam_event_' + event_name,
     label: (if defined != null then '[SDK] ' else '') + event_name,
     sql: |||
-      select * from "%(database)s"."%(schema)s"."%(table)s" where event_type = '%(event_name)s'
-    ||| % { event_name: event_name, database: target.database, schema: target.schema, table: target.table },
+      select * from "%(database)s"."%(schema)s"."%(table)s" where event_type = '%(db_name)s'
+    ||| % { db_name: db_name, database: target.database, schema: target.schema, table: target.table },
     measures: common.measures + if defined != null && std.objectHas(defined, 'measures') then defined.measures else {},
     mappings: common.mappings,
     relations: if defined != null && std.objectHas(defined, 'relations') then defined.relations else {},
