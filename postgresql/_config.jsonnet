@@ -31,7 +31,7 @@
                     else 'unknown'
                   end) as types
           from information_schema.columns
-          where table_schema = current_schema and table_name not like '%~%' and table_name not like '$%'
+          where table_schema = current_schema and table_name not like '%~%' and table_name not like '$%' and column_name not like '$%' and column_name not in ('_user', '_time', '$server_time')
           group by 1
         |||,
       },
