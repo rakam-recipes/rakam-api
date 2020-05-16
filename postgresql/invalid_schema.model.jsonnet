@@ -40,7 +40,7 @@ local dimensions = [
   name: 'rakam_invalid_schema',
   label: '[System] Invalid Schema',
   description: 'Includes the parsing errors in the API. ',
-  target: util.generate_target_reference(std.mergePatch(target, { table: '$invalid_schema' })),
+  target: std.mergePatch(target, { table: '$invalid_schema' }),
   measures: common.measures,
   mappings: common.mappings,
   dimensions: common.columns + std.foldl(function(a, b) a + b, std.map(function(prop) {

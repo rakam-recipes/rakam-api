@@ -31,7 +31,7 @@ std.map(function(event_type)
   {
     name: 'rakam_event_' + event_name,
     label: (if defined != null then '[SDK] ' else '') + event_name,
-    target: util.generate_target_reference(std.mergePatch(target, { table: event_name })),
+    target: std.mergePatch(target, { table: event_name }),
     measures: common.measures + if defined != null && std.objectHas(defined, 'measures') then defined.measures else {},
     mappings: common.mappings,
     relations: if defined != null && std.objectHas(defined, 'relations') then defined.relations else {},
