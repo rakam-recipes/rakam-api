@@ -13,7 +13,7 @@
       description: 'The event schema',
       options: {
         sql: |||
-          select table_name as event, array_agg(column_name) as names,
+          select table_name as event, array_agg(column_name::text) as names,
                 array_agg(case
                     when udt_name = 'text' then 'string'
                     when udt_name = 'timestamptz' then 'timestamp'

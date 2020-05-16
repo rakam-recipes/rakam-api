@@ -19,7 +19,7 @@ std.map(function(event_type)
                                    label: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'label') then definedDimensions[name].label
                                    else if std.objectHas(common.dimensions, name) && std.objectHas(common.dimensions[name], 'label') then common.dimensions[name].label
                                    else null,
-                                   type: types[10],
+                                   type: types[index],
                                    category: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'category') then definedDimensions[name].category
                                    else if std.objectHas(common.dimensions, name) && std.objectHas(common.dimensions[name], 'category') then common.dimensions[name].category
                                    else if std.startsWith(name, '_') then 'SDK'
