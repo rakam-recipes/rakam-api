@@ -1,12 +1,13 @@
 local common = import 'common_schema.libsonnet';
 local predefined = import 'custom_schema.libsonnet';
+local util = import 'util.libsonnet';
 
 local target = std.extVar('target');
 
 std.map(function(event_type)
   local event_name = event_type.event;
   local types = event_type.types;
-  local name = event_type.names;
+  local names = event_type.names;
 
   local defined = if std.objectHas(predefined, event_name) then predefined[event_name] else null;
 
