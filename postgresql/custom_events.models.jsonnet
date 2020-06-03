@@ -29,7 +29,7 @@ std.map(function(event_type)
                                +
                                if defined != null && std.objectHas(defined, 'computed_dimensions') then defined.computed_dimensions else {};
   {
-    name: 'rakam_event_' + event_name,
+    name: 'rakam_event_' + event_type.model,
     label: (if defined != null then '[SDK] ' else '') + event_name,
     target: std.mergePatch(target, { table: event_name }),
     measures: common.measures + if defined != null && std.objectHas(defined, 'measures') then defined.measures else {},
