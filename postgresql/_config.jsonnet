@@ -13,7 +13,7 @@
       description: 'The event schema',
       options: {
         sql: |||
-          select table_name as event, regexp_replace(table_name, '[^\w_]+', '_','g') as model, array_agg(column_name::text) as names,
+          select regexp_replace(table_name, '[^\w_]+', '_','g') as model, array_agg(table_name)[1], as event, array_agg(column_name::text) as names,
                 array_agg(case
                     when udt_name = 'text' then 'string'
                     when udt_name = 'timestamptz' then 'timestamp'
