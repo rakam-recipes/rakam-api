@@ -16,7 +16,7 @@
       aggregation: 'count',
     },
   },
-  dimensions: {
+  properties: {
     __ip: {
       category: 'User Location',
       type: 'string',
@@ -60,23 +60,6 @@
     _device_model: {
       category: 'User Location',
       type: 'string',
-    },
-  },
-  columns: {
-    time: {
-      column: '_time',
-      description: '',
-      type: 'timestamp',
-    },
-    server_time: {
-      column: '$server_time',
-      description: '',
-      type: 'timestamp',
-    },
-    user: {
-      column: '_user',
-      type: 'string',
-      description: '',
     },
   },
   mappings: {

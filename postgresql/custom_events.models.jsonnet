@@ -17,11 +17,11 @@ std.map(function(event_type)
                                  [name]: {
                                    column: name,
                                    label: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'label') then definedDimensions[name].label
-                                   else if std.objectHas(common.dimensions, name) && std.objectHas(common.dimensions[name], 'label') then common.dimensions[name].label
+                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'label') then common.dimensions[name].label
                                    else null,
                                    type: types[index],
                                    category: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'category') then definedDimensions[name].category
-                                   else if std.objectHas(common.dimensions, name) && std.objectHas(common.dimensions[name], 'category') then common.dimensions[name].category
+                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'category') then common.dimensions[name].category
                                    else if std.startsWith(name, '_') then 'SDK'
                                    else 'Event Property',
                                  },
@@ -36,5 +36,21 @@ std.map(function(event_type)
     mappings: common.mappings,
     relations: if defined != null && std.objectHas(defined, 'relations') then defined.relations else {},
     category: 'Rakam Events',
-    dimensions: common.columns + dimensions_for_event,
+    dimensions: {
+      _time: {
+        column: '_time',
+        description: '',
+        type: 'timestamp',
+      },
+      _server_time: {
+        column: '$server_time',
+        description: '',
+        type: 'timestamp',
+      },
+      _user: {
+        column: '_user',
+        type: 'string',
+        description: '',
+      },
+  } + dimensions_for_event,
   }, std.extVar('event_schema'))

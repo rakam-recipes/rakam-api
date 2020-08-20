@@ -43,7 +43,23 @@ local dimensions = [
   target: std.mergePatch(target, { table: '$invalid_schema' }),
   measures: common.measures,
   mappings: common.mappings,
-  dimensions: common.columns + std.foldl(function(a, b) a + b, std.map(function(prop) {
+  dimensions: {
+    _time: {
+      column: '_time',
+      description: '',
+      type: 'timestamp',
+    },
+    _server_time: {
+      column: '$server_time',
+      description: '',
+      type: 'timestamp',
+    },
+    _user: {
+      column: '_user',
+      type: 'string',
+      description: '',
+    },
+  } + std.foldl(function(a, b) a + b, std.map(function(prop) {
     [prop.name]: {
       column: prop.name,
       type: prop.type,
