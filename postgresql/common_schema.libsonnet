@@ -16,7 +16,7 @@
       aggregation: 'count',
     },
   },
-  dimensions: {
+  properties: {
     __ip: {
       category: 'User Location',
       type: 'string',

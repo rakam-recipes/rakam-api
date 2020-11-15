@@ -17,11 +17,11 @@ std.map(function(event_type)
                                  [name]: {
                                    column: name,
                                    label: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'label') then definedDimensions[name].label
-                                   else if std.objectHas(common.dimensions, name) && std.objectHas(common.dimensions[name], 'label') then common.dimensions[name].label
+                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'label') then common.properties[name].label
                                    else null,
                                    type: types[index],
                                    category: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'category') then definedDimensions[name].category
-                                   else if std.objectHas(common.dimensions, name) && std.objectHas(common.dimensions[name], 'category') then common.dimensions[name].category
+                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'category') then common.properties[name].category
                                    else if std.startsWith(name, '_') then 'SDK'
                                    else 'Event Property',
                                  },
