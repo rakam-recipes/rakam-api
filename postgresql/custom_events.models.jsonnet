@@ -11,7 +11,7 @@ std.map(function(event_type)
 
   local defined = if std.objectHas(predefined, event_name) then predefined[event_name] else null;
 
-  local definedDimensions = if defined != null && std.objectHas(defined, 'dimensions') then defined.dimensions else {};
+  local definedDimensions = if defined != null && std.objectHas(defined, 'properties') then defined.properties else {};
 
   local dimensions_for_event = std.foldl(function(a, b) a + b, std.mapWithIndex(function(index, name) {
                                  [name]: {
@@ -27,7 +27,7 @@ std.map(function(event_type)
                                  },
                                }, names), {})
                                +
-                               if defined != null && std.objectHas(defined, 'computed_dimensions') then defined.computed_dimensions else {};
+                               if defined != null && std.objectHas(defined, 'dimensions') then defined.dimensions else {};
   {
     name: event_type.model,
     label: (if defined != null then '[SDK] ' else '') + event_name,
@@ -36,5 +36,21 @@ std.map(function(event_type)
     mappings: common.mappings,
     relations: if defined != null && std.objectHas(defined, 'relations') then defined.relations else {},
     category: 'Rakam Events',
-    dimensions: common.columns + dimensions_for_event,
+    dimensions: {
+      _time: {
+        column: '_time',
+        description: '',
+        type: 'timestamp',
+      },
+      _server_time: {
+        column: '$server_time',
+        description: '',
+        type: 'timestamp',
+      },
+      _user: {
+        column: '_user',
+        type: 'string',
+        description: '',
+      },
+    } + dimensions_for_event,
   }, std.extVar('event_schema'))

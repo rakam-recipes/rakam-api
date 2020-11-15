@@ -62,23 +62,6 @@
       type: 'string',
     },
   },
-  columns: {
-    time: {
-      column: '_time',
-      description: '',
-      type: 'timestamp',
-    },
-    server_time: {
-      column: '$server_time',
-      description: '',
-      type: 'timestamp',
-    },
-    user: {
-      column: '_user',
-      type: 'string',
-      description: '',
-    },
-  },
   mappings: {
     eventTimestamp: 'time',
     userId: 'user',

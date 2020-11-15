@@ -6,7 +6,7 @@
         aggregation: 'sum',
       },
     },
-    dimensions: {
+    properties: {
       quantity: {
         category: 'Basket',
         type: 'integer',
@@ -17,13 +17,12 @@
         category: 'Product',
       },
     },
-    computed_dimensions: {
+    dimensions: {
       example_computed_property: {
         category: 'Example Category',
         type: 'string',
         sql: 'concat({{dimension.product_name}}, {{dimension.product_id}})',
       },
     },
-    relations: {},
   },
 }
