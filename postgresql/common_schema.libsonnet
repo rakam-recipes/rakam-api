@@ -2,15 +2,15 @@
   measures: {
     unique_users: {
       aggregation: 'countUnique',
-      sql: '{{dimension.user}}',
+      sql: '{{dimension._user}}',
     },
     unique_devices: {
       aggregation: 'countUnique',
-      sql: '{{dimension.device_id}}',
+      sql: '{{dimension._device_id}}',
     },
     unique_sessions: {
       aggregation: 'countUnique',
-      sql: '{{dimension.session_id}}',
+      sql: '{{dimension._session_id}}',
     },
     total_events: {
       aggregation: 'count',
