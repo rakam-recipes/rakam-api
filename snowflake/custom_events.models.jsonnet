@@ -22,11 +22,11 @@ std.map(function(event_type)
                                  [prop.n]: {
                                    sql: '{{TABLE}}.properties:"%(name)s"::%(type)s' % { type: prop.t, name: prop.db },
                                    label: if std.objectHas(definedDimensions, prop.n) && std.objectHas(definedDimensions[prop.n], 'label') then definedDimensions[prop.n].label
-                                   else if std.objectHas(common.properties, prop.n) && std.objectHas(common.properties[prop.n], 'label') then common.properties[prop.n].label
+                                   else if std.objectHas(common.dimensions, prop.n) && std.objectHas(common.dimensions[prop.n], 'label') then common.dimensions[prop.n].label
                                    else null,
                                    type: types[prop.t],
                                    category: if std.objectHas(definedDimensions, prop.n) && std.objectHas(definedDimensions[prop.n], 'category') then definedDimensions[prop.n].category
-                                   else if std.objectHas(common.properties, prop.n) && std.objectHas(common.properties[prop.n], 'category') then common.properties[prop.n].category
+                                   else if std.objectHas(common.dimensions, prop.n) && std.objectHas(common.dimensions[prop.n], 'category') then common.dimensions[prop.n].category
                                    else if std.startsWith(prop.db, '_') then 'SDK'
                                    else 'Event Property',
                                  },

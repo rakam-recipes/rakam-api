@@ -13,29 +13,4 @@ local common = import 'common_schema.libsonnet';
       type: 'string',
     },
   },
-  materialize: {
-    segmentation: {
-      first_launch: {
-        query: {
-          model: 'aptoide_first_launch',
-          measures: [
-            'count_all_rows',
-            'test.name',
-          ],
-          dimensions: [
-            { name: '_time', timeframe: 'day' },
-            'test',
-            { name: 'aptoide_package' },
-          ],
-          filters: {
-            'reference.aptoide_package': { equals: 'test', isNotSet: true },
-          },
-          timezone: null,
-        },
-        persist: {
-
-        },
-      },
-    },
-  },
 }

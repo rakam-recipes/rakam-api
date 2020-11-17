@@ -65,18 +65,18 @@
   columns: {
     time: {
       column: '_TIME',
-      description: 'The exact timestamp when this event is occurred in UTC.',
+      description: '',
       type: 'timestamp',
     },
     server_time: {
-      column: 'SERVER_TIME',
-      description: 'The exact timestamp when this event is stored on Snowflake. The timezone depends on the server location',
+      column: '_SERVER_TIME',
+      description: '',
       type: 'timestamp',
     },
     user: {
       column: '_USER',
       type: 'string',
-      description: 'The user id set by the SDK',
+      description: '',
     },
   },
   mappings: {
