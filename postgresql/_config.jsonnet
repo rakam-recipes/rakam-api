@@ -8,7 +8,7 @@
       type: 'schema',
     },
     event_schema: {
-      type: 'discover-model',
+      type: 'discover-models',
       parent: 'target',
     },
   },
