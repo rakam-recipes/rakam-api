@@ -63,8 +63,8 @@
     },
   },
   mappings: {
-    eventTimestamp: 'time',
-    userId: 'user',
-    deviceId: 'device_id',
+    eventTimestamp: '_time',
+    userId: '_user',
+    deviceId: '_device_id',
   },
 }
