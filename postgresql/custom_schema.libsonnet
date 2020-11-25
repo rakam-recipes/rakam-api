@@ -15,6 +15,9 @@
         type: 'string',
         category: 'Product',
       },
+      unwanted_property: {
+        hidden: true,
+      },
     },
     dimensions: {
       example_computed_property: {

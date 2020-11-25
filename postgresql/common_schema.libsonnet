@@ -53,7 +53,7 @@
       category: 'User Location',
       type: 'string',
     },
-    doublearrayim: {
+    unwanted_common_property: {
       hidden: true,
     },
   },
