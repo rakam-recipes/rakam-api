@@ -13,19 +13,14 @@ local target = std.extVar('target');
 
   local definedDimensions = if defined != null && std.objectHas(defined, 'properties') then defined.properties else {};
 
-  local dimensions_for_event = std.foldl(function(a, b) a + b, std.mapWithIndex(function(index, name) {
+  local dimensions_for_event = std.mergePatch(std.mapWithIndex(function(index, name) {
                                  [name]: {
                                    column: name,
-                                   label: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'label') then definedDimensions[name].label
-                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'label') then common.properties[name].label
-                                   else null,
                                    type: types[index],
-                                   category: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'category') then definedDimensions[name].category
-                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'category') then common.properties[name].category
-                                   else if std.startsWith(name, '_') then 'SDK'
+                                   category: if std.startsWith(name, '_') then 'SDK'
                                    else 'Event Property',
                                  },
-                               }, names), {})
+                               }, names), std.mergePatch(util.get(definedDimensions, name), util.get(common.properties, name)))
                                +
                                util.get(defined, 'dimensions', {});
   {
