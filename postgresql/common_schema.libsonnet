@@ -67,4 +67,7 @@
     userId: '_user',
     deviceId: '_device_id',
   },
+  relations: {
+
+  },
 }
