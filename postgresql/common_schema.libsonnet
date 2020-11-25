@@ -61,10 +61,4 @@
     eventTimestamp: '_time',
     userId: '_user',
   },
-  relations: if std.extVar('users_table') != null then {
-    _users: {
-      source: '_user',
-      target: 'id',
-    },
-  } else {},
 }

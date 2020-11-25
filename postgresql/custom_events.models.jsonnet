@@ -20,7 +20,7 @@ local target = std.extVar('target');
                                    category: if std.startsWith(name, '_') then 'SDK'
                                    else 'Event Property',
                                  },
-                               }, names), std.mergePatch(definedDimensions, common.properties))
+                               }, names), std.mergePatch(common.properties, definedDimensions))
                                +
                                util.get(defined, 'dimensions', {});
   {
@@ -29,7 +29,12 @@ local target = std.extVar('target');
     target: std.mergePatch(target, { table: event_name }),
     measures: common.measures + util.get(defined, 'measures', {}),
     mappings: common.mappings,
-    relations: common.relations + util.get(defined, 'relations', {}),
+    relations: if std.extVar('users_table') != null then {
+      _users: {
+        source: '_user',
+        target: 'id',
+      },
+    } else {} + util.get(defined, 'relations', {}),
     category: 'Rakam Events',
     dimensions: {
       _time: {
