@@ -9,7 +9,6 @@
     properties: {
       quantity: {
         category: 'Basket',
-        type: 'integer',
         description: 'How many products the user added to the basket?',
       },
       brand_name: {

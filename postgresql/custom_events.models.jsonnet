@@ -27,7 +27,7 @@ local target = std.extVar('target');
                                  },
                                }, names), {})
                                +
-                               if defined != null && std.objectHas(defined, 'dimensions') then defined.dimensions else {};
+                               util.get(defined, 'dimensions', {});
   {
     name: event_type.model,
     label: event_name,
