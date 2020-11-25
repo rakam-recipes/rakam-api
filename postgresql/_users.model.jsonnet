@@ -1,9 +1,21 @@
-local attrs = std.extVar('user_attributions');
+local table = std.extVar('users_table');
 
-if std.objectHas(attrs, '_users') then std.mergePatch(attrs._users, {
-  dimensions: {
-    hiddenattr: {
+if table == null then null else {
+  category: 'Rakam Events',
+  name: '_users',
+  target: table,
+  label: '[Users]',
+  mappings: {
+    userId: 'id',
+  },
+  measures: {
+    total_users: {
+      aggregation: 'count',
+    },
+  },
+  dimensions: std.extVar('user_attributions') {
+    customattr: {
       hidden: true,
     },
   },
-}) else null
+}
