@@ -13,9 +13,5 @@ if table == null then null else {
       aggregation: 'count',
     },
   },
-  dimensions: std.extVar('user_attributions') {
-    customattr: {
-      hidden: true,
-    },
-  },
+  dimensions: std.extVar('user_attributions'),
 }
