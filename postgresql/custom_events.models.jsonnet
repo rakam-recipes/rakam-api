@@ -4,7 +4,7 @@ local util = import 'util.libsonnet';
 
 local target = std.extVar('target');
 
-std.map(function(event_type)
+[function(event_type)
   local event_name = event_type.event;
   local types = event_type.types;
   local names = event_type.names;
@@ -34,7 +34,8 @@ std.map(function(event_type)
     target: std.mergePatch(target, { table: event_name }),
     measures: common.measures + if defined != null && std.objectHas(defined, 'measures') then defined.measures else {},
     mappings: common.mappings,
-    relations: if defined != null && std.objectHas(defined, 'relations') then defined.relations else {},
+    relations: common.relations
+               + if defined != null && std.objectHas(defined, 'relations') then defined.relations else {},
     category: 'Rakam Events',
     dimensions: {
       _time: {
@@ -53,4 +54,4 @@ std.map(function(event_type)
         description: '',
       },
     } + dimensions_for_event,
-  }, std.extVar('event_schema'))
+  } for event_type in std.extVar('event_schema')]

@@ -7,6 +7,14 @@
       label: 'Project Name',
       type: 'schema',
     },
+    users_table: {
+      type: 'table',
+      default: { table: '_users' },
+    },
+    user_attributions: {
+      type: 'table',
+      default: { table: '_users' },
+    },
     event_schema: {
       type: 'sql',
       parent: 'target',
