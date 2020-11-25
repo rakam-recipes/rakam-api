@@ -15,7 +15,7 @@ if table == null then null else {
   },
   dimensions: std.extVar('user_attributions') {
     id: {
-      type: 'timestamp',
+      type: 'string',
       column: 'id',
     },
     created_at: {
