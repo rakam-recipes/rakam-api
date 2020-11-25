@@ -20,7 +20,7 @@ local target = std.extVar('target');
                                    category: if std.startsWith(name, '_') then 'SDK'
                                    else 'Event Property',
                                  },
-                               }, names), std.mergePatch(util.get(definedDimensions, name), util.get(common.properties, name)))
+                               }, names), std.mergePatch(util.get(definedDimensions, name, {}), util.get(common.properties, name, {})))
                                +
                                util.get(defined, 'dimensions', {});
   {
