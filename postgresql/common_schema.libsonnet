@@ -53,7 +53,7 @@
       category: 'User Location',
       type: 'string',
     },
-    _server_time: {
+    doublearrayim: {
       hidden: true,
     },
   },
