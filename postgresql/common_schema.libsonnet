@@ -4,14 +4,6 @@
       aggregation: 'countUnique',
       sql: '{{dimension._user}}',
     },
-    unique_devices: {
-      aggregation: 'countUnique',
-      sql: '{{dimension._device_id}}',
-    },
-    unique_sessions: {
-      aggregation: 'countUnique',
-      sql: '{{dimension._session_id}}',
-    },
     total_events: {
       aggregation: 'count',
     },
@@ -65,7 +57,6 @@
   mappings: {
     eventTimestamp: '_time',
     userId: '_user',
-    deviceId: '_device_id',
   },
   relations: if std.extVar('users_table') != null then {
     _users: {
