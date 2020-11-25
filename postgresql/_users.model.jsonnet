@@ -13,7 +13,7 @@ if table == null then null else {
       aggregation: 'count',
     },
   },
-  dimensions: std.extVar('user_attributions') {
+  dimensions: std.mergePatch(std.extVar('user_attributions'), {
     id: {
       type: 'string',
       column: 'id',
@@ -22,5 +22,5 @@ if table == null then null else {
       type: 'timestamp',
       column: 'created_at',
     },
-  },
+  }),
 }
