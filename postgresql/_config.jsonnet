@@ -12,8 +12,11 @@
       default: { table: '_users' },
     },
     user_attributions: {
-      type: 'table-columns',
+      type: 'table-column',
       parent: 'users_table',
+      options: {
+        multiple: true,
+      },
     },
     event_schema: {
       type: 'sql',
