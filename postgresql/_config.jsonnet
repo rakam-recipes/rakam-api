@@ -12,8 +12,8 @@
       default: { table: '_users' },
     },
     user_attributions: {
-      type: 'discover-models',
-      default: { table: '_users' },
+      type: 'table-columns',
+      parent: 'users_table',
     },
     event_schema: {
       type: 'sql',
