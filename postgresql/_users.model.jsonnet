@@ -13,5 +13,14 @@ if table == null then null else {
       aggregation: 'count',
     },
   },
-  dimensions: std.extVar('user_attributions'),
+  dimensions: std.extVar('user_attributions') {
+    id: {
+      type: 'timestamp',
+      column: 'id',
+    },
+    created_at: {
+      type: 'timestamp',
+      column: 'created_at',
+    },
+  },
 }

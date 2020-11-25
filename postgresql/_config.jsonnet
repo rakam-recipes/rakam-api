@@ -16,6 +16,7 @@
       parent: 'users_table',
       options: {
         multiple: true,
+        exclude: ['id', 'created_at'],
       },
     },
     event_schema: {
