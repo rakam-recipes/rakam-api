@@ -19,9 +19,7 @@ local target = std.extVar('target');
                                    label: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'label') then definedDimensions[name].label
                                    else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'label') then common.properties[name].label
                                    else null,
-                                   hidden: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'hidden') then definedDimensions[name].hidden
-                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'hidden') then common.properties[name].hidden
-                                   else null,
+                                   hidden: util.get(definedDimensions, name + '.hidden', util.get(common.properties, name + '.hidden', null)),
                                    type: types[index],
                                    category: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'category') then definedDimensions[name].category
                                    else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'category') then common.properties[name].category
