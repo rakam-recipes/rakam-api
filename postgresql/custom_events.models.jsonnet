@@ -30,7 +30,7 @@ local target = std.extVar('target');
                                if defined != null && std.objectHas(defined, 'dimensions') then defined.dimensions else {};
   {
     name: event_type.model,
-    label: (if defined != null then '[SDK] ' else '') + event_name,
+    label: event_name,
     target: std.mergePatch(target, { table: event_name }),
     measures: common.measures + util.get(defined, 'measures', {}),
     mappings: common.mappings,
