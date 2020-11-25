@@ -12,7 +12,7 @@
       default: { table: '_users' },
     },
     user_attributions: {
-      type: 'table',
+      type: 'discover-models',
       default: { table: '_users' },
     },
     event_schema: {
