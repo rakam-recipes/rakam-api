@@ -9,7 +9,7 @@ local target = std.extVar('target');
   local types = event_type.types;
   local names = event_type.names;
 
-  local defined = if std.objectHas(predefined, event_name) then predefined[event_name] else null;
+  local defined = if std.objectHas(predefined, event_name) then predefined[event_name] else {};
 
   local definedDimensions = if defined != null && std.objectHas(defined, 'properties') then defined.properties else {};
 
@@ -32,10 +32,9 @@ local target = std.extVar('target');
     name: event_type.model,
     label: (if defined != null then '[SDK] ' else '') + event_name,
     target: std.mergePatch(target, { table: event_name }),
-    measures: common.measures + if defined != null && std.objectHas(defined, 'measures') then defined.measures else {},
+    measures: common.measures + util.get(defined, 'measures', {}),
     mappings: common.mappings,
-    relations: common.relations
-               + if defined != null && std.objectHas(defined, 'relations') then defined.relations else {},
+    relations: common.relations + util.get(defined, 'relations', {}),
     category: 'Rakam Events',
     dimensions: {
       _time: {
