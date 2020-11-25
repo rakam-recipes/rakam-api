@@ -67,7 +67,10 @@
     userId: '_user',
     deviceId: '_device_id',
   },
-  relations: {
-
-  },
+  relations: if std.extVar('users_table') != null then {
+    _users: {
+      source: '_user',
+      target: 'id',
+    },
+  } else {},
 }
