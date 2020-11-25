@@ -16,15 +16,13 @@ local target = std.extVar('target');
   local dimensions_for_event = std.foldl(function(a, b) a + b, std.mapWithIndex(function(index, name) {
                                  [name]: {
                                    column: name,
-                                   label: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'label') then definedDimensions[name].label
-                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'label') then common.properties[name].label
-                                   else null,
-                                   hidden: true,
+                                   label: util.get(definedDimensions, name + '.label', util.get(common.properties, name + '.label', null)),
+                                   hidden: util.get(definedDimensions, name + '.hidden', util.get(common.properties, name + '.hidden', null)),
                                    type: types[index],
-                                   category: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'category') then definedDimensions[name].category
-                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'category') then common.properties[name].category
-                                   else if std.startsWith(name, '_') then 'SDK'
-                                   else 'Event Property',
+                                   category: util.get(definedDimensions, name + '.category', util.get(common.properties,
+                                                                                                      name + '.category',
+                                                                                                      if std.startsWith(name, '_') then 'SDK'
+                                                                                                      else 'Event Property')),
                                  },
                                }, names), {})
                                +
@@ -45,18 +43,16 @@ local target = std.extVar('target');
     dimensions: {
       _time: {
         column: '_time',
-        description: '',
         type: 'timestamp',
       },
       _server_time: {
+        hidden: true,
         column: '$server_time',
-        description: '',
         type: 'timestamp',
       },
       _user: {
         column: '_user',
         type: 'string',
-        description: '',
       },
     } + dimensions_for_event,
   }
