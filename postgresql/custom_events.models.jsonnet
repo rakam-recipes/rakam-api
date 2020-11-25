@@ -13,14 +13,22 @@ local target = std.extVar('target');
 
   local definedDimensions = if defined != null && std.objectHas(defined, 'properties') then defined.properties else {};
 
-  local dimensions_for_event = std.mergePatch(std.mapWithIndex(function(index, name) {
+  local dimensions_for_event = std.foldl(function(a, b) a + b, std.mapWithIndex(function(index, name) {
                                  [name]: {
                                    column: name,
+                                   label: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'label') then definedDimensions[name].label
+                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'label') then common.properties[name].label
+                                   else null,
+                                   hidden: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'hidden') then definedDimensions[name].label
+                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'hidden') then common.properties[name].label
+                                   else null,
                                    type: types[index],
-                                   category: if std.startsWith(name, '_') then 'SDK'
+                                   category: if std.objectHas(definedDimensions, name) && std.objectHas(definedDimensions[name], 'category') then definedDimensions[name].category
+                                   else if std.objectHas(common.properties, name) && std.objectHas(common.properties[name], 'category') then common.properties[name].category
+                                   else if std.startsWith(name, '_') then 'SDK'
                                    else 'Event Property',
                                  },
-                               }, names), std.mergePatch(common.properties, definedDimensions))
+                               }, names), {})
                                +
                                util.get(defined, 'dimensions', {});
   {
