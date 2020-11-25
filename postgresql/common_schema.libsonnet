@@ -53,9 +53,6 @@
       category: 'User Location',
       type: 'string',
     },
-    _server_time: {
-      hidden: true,
-    },
   },
   mappings: {
     eventTimestamp: '_time',
