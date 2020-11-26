@@ -9,7 +9,8 @@ if table == null then null else {
     userId: 'id',
   },
   measures: {
-    total_users: {
+    count_all_rows: {
+      label: 'Total Users',
       aggregation: 'count',
     },
   },

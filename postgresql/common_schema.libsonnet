@@ -4,7 +4,8 @@
       aggregation: 'countUnique',
       sql: '{{dimension._user}}',
     },
-    total_events: {
+    count_all_rows: {
+      label: 'Total Events',
       aggregation: 'count',
     },
   },
