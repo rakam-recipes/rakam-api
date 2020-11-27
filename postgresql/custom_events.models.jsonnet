@@ -45,7 +45,7 @@ local target = std.extVar('target');
         column: '_time',
         type: 'timestamp',
       },
-      _server_time: {
+      server_time: {
         hidden: true,
         column: '$server_time',
         type: 'timestamp',

@@ -2,7 +2,6 @@
   click: {
     measures: {
       count_unique_devices: {
-
         column: '_device_id',
         aggregation: 'countUnique',
       },
