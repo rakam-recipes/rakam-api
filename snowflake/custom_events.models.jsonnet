@@ -12,8 +12,8 @@ local types = {
 };
 
 std.map(function(event_type)
-  local event_name = event_type.n;
-  local db_name = event_type.db;
+  local event_name = event_type.N;
+  local db_name = event_type.DB;
 
   local defined = if std.objectHas(predefined, event_name) then predefined[event_name] else null;
 
@@ -30,7 +30,7 @@ std.map(function(event_type)
                                    else if std.startsWith(prop.db, '_') then 'SDK'
                                    else 'Event Property',
                                  },
-                               }, std.parseJson(event_type.props)), {})
+                               }, std.parseJson(event_type.PROPS)), {})
                                +
                                if defined != null && std.objectHas(defined, 'computed_dimensions') then defined.computed_dimensions else {};
   {
