@@ -55,8 +55,8 @@ local dimensions = [
   label: '[System] Invalid Schema',
   description: 'Includes the parsing errors in the API. ',
   sql: |||
-    select * from %(target)s where event_type = '$invalid_schema'
-  ||| % { target: util.generate_target_reference(target) },
+    select * from "%(database)s"."%(schema)s"."%(table)s" where event_type = '$invalid_schema'
+  ||| % { database: target.database, schema: target.schema, table: target.table },
   measures: common.measures,
   mappings: common.mappings,
   dimensions: common.columns + std.foldl(function(a, b) a + b, std.map(function(prop) {
