@@ -53,9 +53,9 @@ local dimensions = [
   category: 'Rakam Events',
   name: 'rakam_invalid_schema',
   label: '[System] Invalid Schema',
-  description: 'Includes the parsing errors in the API. ',
+  description: 'Includes the parsing errors in the API. t',
   sql: |||
-    select * from "FIVETRAN"."RAKAM_EVENTS"."EVENTS" where event_type = '$invalid_schema'
+    select * from FIVETRAN.RAKAM_EVENTS.EVENTS where event_type = '$invalid_schema'
   ||| % { database: target.database, schema: target.schema, table: target.table },
   measures: common.measures,
   mappings: common.mappings,
