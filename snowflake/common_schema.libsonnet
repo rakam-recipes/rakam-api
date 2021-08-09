@@ -3,6 +3,7 @@
     unique_users: {
       aggregation: 'countUnique',
       sql: '{{dimension.user}}',
+      description: "Number of unique users that are identified via `rakam.setUserId` call in the SDK"
     },
     unique_devices: {
       aggregation: 'countUnique',
