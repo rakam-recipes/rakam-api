@@ -8,6 +8,7 @@
     unique_devices: {
       aggregation: 'countUnique',
       sql: '{{dimension.device_id}}',
+      description: "Number of unique devices that are identified automatically in the SDK. (You can override device id via `rakam.setDeviceId` in the SDK)"
     },
     unique_sessions: {
       aggregation: 'countUnique',
