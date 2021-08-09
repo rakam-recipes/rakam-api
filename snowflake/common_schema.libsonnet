@@ -13,6 +13,7 @@
     unique_sessions: {
       aggregation: 'countUnique',
       sql: '{{dimension.session_id}}',
+      description: "Number of unique sessions for the tracked users. Learn more from here: https://github.com/buremba/rakam-android#tracking-sessions"
     },
     total_events: {
       aggregation: 'count',
